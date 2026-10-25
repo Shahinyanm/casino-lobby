@@ -1,0 +1,81 @@
+/*
+ * DOM order = mobile reading order: jackpot, promos, wallet + live wins, slot, favorites, games.
+ * From 1024px the wallet column moves to the side and sticks.
+ */
+.lobby {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 32px;
+}
+
+.hero,
+.promos,
+.slot,
+.favorites,
+.catalog,
+.aside {
+  min-inline-size: 0;
+}
+
+.aside {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+@media (min-width: 48rem) and (max-width: 63.99rem) {
+  .aside {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+@media (min-width: 64rem) {
+  .lobby {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    grid-template-areas:
+      'hero aside'
+      'promos aside'
+      'slot aside'
+      'favorites aside'
+      'catalog aside';
+    grid-template-rows: auto auto auto auto 1fr;
+    column-gap: 28px;
+  }
+
+  .hero {
+    grid-area: hero;
+  }
+
+  .promos {
+    grid-area: promos;
+  }
+
+  .slot {
+    grid-area: slot;
+  }
+
+  .favorites {
+    grid-area: favorites;
+  }
+
+  .catalog {
+    grid-area: catalog;
+  }
+
+  .aside {
+    grid-area: aside;
+    position: sticky;
+    inset-block-start: calc(var(--header-h) + 16px);
+    align-self: start;
+    max-block-size: calc(100dvh - var(--header-h) - 32px);
+    overflow-y: auto;
+    scrollbar-width: thin;
+  }
+}
+
+@media (min-width: 90rem) {
+  .lobby {
+    grid-template-columns: minmax(0, 1fr) 360px;
+  }
+}

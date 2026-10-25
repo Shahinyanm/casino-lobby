@@ -1,0 +1,34 @@
+{
+  "name": "casino-lobby",
+  "private": true,
+  "description": "Casino lobby: React SPA + NestJS mock API",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "start": "npm run build && npm run serve",
+    "serve": "node apps/api/dist/main.js",
+    "build": "npm run build -w @lobby/web && npm run build -w @lobby/api",
+    "dev": "concurrently -k -n api,web -c blue,magenta \"npm run dev -w @lobby/api\" \"npm run dev -w @lobby/web\"",
+    "test": "npm test -w @lobby/api -w @lobby/web",
+    "typecheck": "npm run typecheck -w @lobby/api -w @lobby/web",
+    "lint": "eslint . --max-warnings 0",
+    "check": "npm run typecheck && npm run lint && npm test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "concurrently": "^9.2.5",
+    "eslint": "^9.39.5",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^16.5.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.72.0",
+    "vitest": "^4.1.12"
+  }
+}

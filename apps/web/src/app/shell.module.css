@@ -1,0 +1,28 @@
+.main {
+  inline-size: 100%;
+  max-inline-size: 1440px;
+  margin-inline: auto;
+  padding: 24px var(--gutter) 64px;
+}
+
+.main:focus {
+  outline: none;
+}
+
+.offline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px var(--gutter);
+  background: var(--danger-soft);
+  color: var(--text);
+  font-size: 0.9375rem;
+}
+
+.offline svg {
+  inline-size: 18px;
+  block-size: 18px;
+  flex: none;
+  color: var(--danger);
+}

@@ -1,0 +1,160 @@
+/* Header */
+.headerBalance {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.headerAmount {
+  display: grid;
+  line-height: 1.15;
+  text-align: end;
+}
+
+.headerLabel {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.headerAmount > span[aria-hidden] {
+  font-weight: 600;
+}
+
+.headerSkeleton {
+  display: block;
+  inline-size: 92px;
+  block-size: 30px;
+}
+
+@media (max-width: 47.99rem) {
+  .headerDeposit {
+    inline-size: 44px;
+    padding: 0;
+  }
+
+  .headerDepositText {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 29.99rem) {
+  .headerLabel {
+    display: none;
+  }
+}
+
+.headerDeposit svg {
+  inline-size: 20px;
+  block-size: 20px;
+}
+
+/* Card */
+.card {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.card :global(.btn) svg {
+  inline-size: 20px;
+  block-size: 20px;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+}
+
+.balance {
+  display: grid;
+  gap: 2px;
+}
+
+.balanceLabel {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.balanceValue {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.recentTitle {
+  margin-block-start: 6px;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.empty {
+  color: var(--text-muted);
+}
+
+.rows {
+  display: grid;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0 12px;
+  padding: 10px 0;
+  border-block-end: 1px solid var(--border);
+}
+
+.row:last-child {
+  border-block-end: 0;
+}
+
+.row[data-pending='true'] {
+  padding-inline-start: 10px;
+  border-inline-start: 2px dashed var(--accent);
+}
+
+.rowType {
+  font-weight: 500;
+}
+
+.rowAmount {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+
+.rowAmount[data-credit='true'] {
+  color: var(--positive);
+}
+
+.rowMeta,
+.rowSource {
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.rowSource {
+  grid-column: 2;
+  grid-row: 2;
+  text-align: end;
+}
+
+.skeleton {
+  display: grid;
+  gap: 12px;
+}
+
+/* On a phone the wallet sits above the games: keep it short. */
+@media (max-width: 47.99rem) {
+  .row:nth-child(n + 4) {
+    display: none;
+  }
+}

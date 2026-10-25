@@ -1,0 +1,173 @@
+.feed {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  flex: 1;
+  font-size: 1.25rem;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.status::before {
+  content: '';
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: 50%;
+  background: var(--text-muted);
+}
+
+.status[data-status='live']::before {
+  background: var(--live);
+  box-shadow: 0 0 0 0 var(--live);
+  animation: pulse 2s infinite;
+}
+
+.status[data-status='reconnecting']::before {
+  background: var(--danger);
+}
+
+.chevronClosed,
+.chevronOpen {
+  transition: rotate 0.15s;
+}
+
+.chevronClosed {
+  rotate: 90deg;
+}
+
+.chevronOpen {
+  rotate: -90deg;
+}
+
+.waiting {
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--accent-soft);
+  color: var(--text);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.body[hidden] {
+  display: none;
+}
+
+.list {
+  display: grid;
+  gap: 2px;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  grid-template-areas:
+    'avatar player amount'
+    'avatar game time';
+  column-gap: 10px;
+  align-items: center;
+  padding: 8px;
+  border-radius: var(--radius-md);
+  animation: arrive 0.4s var(--ease-out);
+}
+
+.item:hover {
+  background: var(--surface-2);
+}
+
+.avatar {
+  grid-area: avatar;
+  display: grid;
+  place-items: center;
+  inline-size: 36px;
+  block-size: 36px;
+  border-radius: 50%;
+  background: oklch(0.72 0.11 var(--hue, 160));
+  color: oklch(0.2 0.04 var(--hue, 160));
+  font-weight: 700;
+}
+
+.player {
+  grid-area: player;
+  overflow: hidden;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.amount {
+  grid-area: amount;
+  color: var(--accent);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+
+.game {
+  grid-area: game;
+  overflow: hidden;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.game:hover {
+  color: var(--text);
+  text-decoration: underline;
+}
+
+.time {
+  grid-area: time;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+  text-align: end;
+  white-space: nowrap;
+}
+
+.empty {
+  padding: 16px 8px;
+  color: var(--text-muted);
+}
+
+.skeletonLine {
+  grid-area: player;
+  block-size: 14px;
+}
+
+.skeletonLineShort {
+  grid-area: game;
+  block-size: 12px;
+  inline-size: 60%;
+}
+
+/* A background flash, not a fade: text keeps full contrast from the first frame. */
+@keyframes arrive {
+  from {
+    background: var(--accent-soft);
+  }
+}
+
+@keyframes pulse {
+  70% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+}

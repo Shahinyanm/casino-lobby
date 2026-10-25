@@ -1,0 +1,110 @@
+.section {
+  display: grid;
+  gap: 14px;
+  min-inline-size: 0;
+}
+
+.wrap {
+  position: relative;
+  min-inline-size: 0;
+}
+
+.scroller {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 2px;
+  scrollbar-width: none;
+  border-radius: var(--radius-lg);
+}
+
+.scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.scroller:focus-visible {
+  outline-offset: 4px;
+}
+
+.track {
+  display: flex;
+  gap: 14px;
+  padding: 2px;
+}
+
+.card {
+  flex: 0 0 min(85%, 340px);
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  gap: 8px;
+  min-block-size: 220px;
+  padding: 22px;
+  border-radius: var(--radius-lg);
+  scroll-snap-align: start;
+  background:
+    radial-gradient(120% 90% at 100% 0%, oklch(0.62 0.17 var(--promo-h, 160) / 0.55), transparent 60%),
+    linear-gradient(150deg, oklch(0.36 0.09 var(--promo-h, 160)), oklch(0.22 0.05 var(--promo-h, 160)));
+  color: oklch(0.97 0.01 var(--promo-h, 160));
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.cardBody {
+  color: oklch(0.92 0.02 var(--promo-h, 160));
+}
+
+.cardEnds {
+  color: oklch(0.88 0.03 var(--promo-h, 160));
+  font-size: 0.875rem;
+}
+
+.cardCta {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 44px;
+  padding: 0 18px;
+  border-radius: var(--radius-pill);
+  background: oklch(0.97 0.01 var(--promo-h, 160));
+  color: oklch(0.25 0.06 var(--promo-h, 160));
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cardCta:hover {
+  background: white;
+}
+
+.cardCta:focus-visible {
+  outline-color: white;
+}
+
+.nav {
+  display: none;
+}
+
+.prevIcon {
+  rotate: 180deg;
+}
+
+.skeletonCard {
+  flex: 0 0 min(85%, 340px);
+  min-block-size: 220px;
+  border-radius: var(--radius-lg);
+}
+
+/* Buttons only where there is a mouse; touch screens swipe. */
+@media (hover: hover) and (pointer: fine) {
+  .nav {
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    inset-block-start: -58px;
+    inset-inline-end: 0;
+  }
+}

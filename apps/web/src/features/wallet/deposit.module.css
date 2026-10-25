@@ -1,0 +1,128 @@
+.dialog {
+  inline-size: min(460px, calc(100vw - 24px));
+  max-block-size: calc(100dvh - 24px);
+}
+
+.dialog[open] {
+  animation: rise 0.22s var(--ease-out);
+}
+
+.form {
+  display: grid;
+  gap: 18px;
+  padding: 20px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 7.5rem;
+  gap: 12px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field label {
+  font-weight: 600;
+}
+
+.field input {
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.field input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+.error {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  color: var(--danger);
+  font-size: 0.9375rem;
+}
+
+.quote {
+  display: grid;
+  gap: 4px;
+  min-block-size: 64px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: var(--surface-2);
+}
+
+.quoteLine {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--text-muted);
+}
+
+.quoteLine strong {
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+}
+
+.quoteSkeleton {
+  display: block;
+  block-size: 36px;
+}
+
+.rate {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.hint {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.inlineButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+@media (max-width: 29.99rem) {
+  .fields {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+  }
+
+  .actions .btn {
+    inline-size: 100%;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+}

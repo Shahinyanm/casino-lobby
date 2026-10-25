@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="Casino lobby: games, live wins, wallet and promotions." />
+    <meta name="theme-color" content="#0f2420" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <title>Felt & Brass Lobby</title>
+    <script>
+      // Runs before first paint so there is no theme or direction flash. Keys match src/app/preferences.ts.
+      (function () {
+        var root = document.documentElement;
+        try {
+          var theme = localStorage.getItem('lobby:theme');
+          if (theme !== 'light' && theme !== 'dark') {
+            theme = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          }
+          root.dataset.theme = theme;
+
+          var hue = Number(localStorage.getItem('lobby:accent'));
+          if (localStorage.getItem('lobby:accent') !== null && hue >= 0 && hue < 360) {
+            root.style.setProperty('--accent-h', String(hue));
+          }
+
+          var locale = localStorage.getItem('lobby:locale') || (navigator.language.indexOf('he') === 0 ? 'he' : 'en');
+          root.lang = locale === 'he' ? 'he' : 'en';
+          root.dir = locale === 'he' ? 'rtl' : 'ltr';
+        } catch (e) {
+          // Storage blocked: keep the defaults from the markup.
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
